@@ -1,31 +1,33 @@
 package com.example.tempest_blue.str;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.TypedValue;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import static android.R.color.white;
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class CalculateWeight extends AppCompatActivity {
 
-    Intent intent;
-    Bundle extras;
     int squatWeight, benchWeight, deadliftWeight, militaryWeight, day;
     int originalSquatWeight, originalBenchWeight, originalDeadliftWeight, originalMilitaryWeight;
 
@@ -34,6 +36,18 @@ public class CalculateWeight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_weight);
+
+        // Define toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(getColor(white));
+
+        // Get support action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Enable the up (back) button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -41,22 +55,48 @@ public class CalculateWeight extends AppCompatActivity {
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         }
 
-        // Get Input
-        intent = getIntent();
-        extras = intent.getExtras();
-        originalSquatWeight = extras.getInt("SQUAT_WEIGHT");
-        originalBenchWeight = extras.getInt("BENCH_WEIGHT");
-        originalDeadliftWeight = extras.getInt("DEADLIFT_WEIGHT");
-        originalMilitaryWeight = extras.getInt("MILITARY_WEIGHT");
-        squatWeight = originalSquatWeight;
-        benchWeight = originalBenchWeight;
-        deadliftWeight = originalDeadliftWeight;
-        militaryWeight = originalMilitaryWeight;
-        day = extras.getInt("DAY");
+        Context context = this;
+        SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        Boolean firstTime = sharedPref.getBoolean("firstTime", false);
+        if (firstTime) {
+            // Get Input
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            originalSquatWeight = extras.getInt("SQUAT_WEIGHT");
+            originalBenchWeight = extras.getInt("BENCH_WEIGHT");
+            originalDeadliftWeight = extras.getInt("DEADLIFT_WEIGHT");
+            originalMilitaryWeight = extras.getInt("MILITARY_WEIGHT");
+            squatWeight = originalSquatWeight;
+            benchWeight = originalBenchWeight;
+            deadliftWeight = originalDeadliftWeight;
+            militaryWeight = originalMilitaryWeight;
+            Log.d("squatWeight",Integer.toString(originalSquatWeight));
+            EditText editText = (EditText) findViewById(R.id.day);
+            editText.setText("1");
+            editor.putBoolean("firstTime", false);
+            editor.commit();
+        }
+
+        else {
+            // Restore day and inputs from save file
+            originalSquatWeight = sharedPref.getInt("squatWeight",45);
+            originalBenchWeight = sharedPref.getInt("benchWeight",45);
+            originalDeadliftWeight = sharedPref.getInt("deadliftWeight",45);
+            originalMilitaryWeight = sharedPref.getInt("militaryWeight",45);
+            day = sharedPref.getInt("day", 1);
+            squatWeight = originalSquatWeight + (5 * (day - 1));
+            benchWeight = originalBenchWeight + (5 * ((day - 1) / 2));
+            deadliftWeight = originalDeadliftWeight + (15 * ((day - 1) / 3));
+            militaryWeight = originalMilitaryWeight + (5 * ((day - 1) / 2));
+            EditText editText = (EditText) findViewById(R.id.day);
+            editText.setText(Integer.toString(day));
+        }
 
         // Set listener on day number
-        final EditText editText = (EditText) findViewById(R.id.day);
-        editText.addTextChangedListener(new TextWatcher() {
+        final EditText day = (EditText) findViewById(R.id.day);
+        day.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -65,6 +105,7 @@ public class CalculateWeight extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
                     setWeight();
+                    recordDay();
                 }
             }
 
@@ -77,11 +118,50 @@ public class CalculateWeight extends AppCompatActivity {
         calculateWeights();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_calculate_weights,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                Context context = this;
+                SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("firstTime", true);
+                editor.commit();
+//                NavUtils.navigateUpFromSameTask(this);
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                return true;
+            case R.id.action_map:
+                startActivity(new Intent(this, FindGym.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     // Calculate weights for exercises
     public void calculateWeights() {
+        // Save all weights first
+        Context context = this;
+        SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        EditText editText = (EditText) findViewById(R.id.day);
+        day = Integer.parseInt(editText.getText().toString());
+        editor.putInt("squatWeight", squatWeight - (5 * (day - 1)));
+        editor.putInt("benchWeight", benchWeight - (5 * ((day - 1) / 2)));
+        editor.putInt("deadliftWeight", deadliftWeight - (15 * ((day - 1) / 3)));
+        editor.putInt("militaryWeight", militaryWeight - (5 * ((day - 1) / 2)));
+        editor.commit();
+
         TextView textView;
         double splitWeight;
-
         // Squats done every day so do calculation no matter what.
         textView = (TextView) findViewById(R.id.firstExercise);
         textView.setText("Squat");
@@ -249,22 +329,6 @@ public class CalculateWeight extends AppCompatActivity {
         }
     }
 
-    // User clicks right arrow button
-    public void increaseWeight(View view) {
-        day += 1;
-        EditText editText = (EditText) findViewById(R.id.day);
-        editText.setText(Integer.toString(day));
-    }
-
-    // User clicks left arrow button
-    public void decreaseWeight(View view) {
-        if (day > 1) {
-            day -= 1;
-            EditText editText = (EditText) findViewById(R.id.day);
-            editText.setText(Integer.toString(day));
-        }
-    }
-
     public void addFirstExerciseWeight (View view) {
         squatWeight += 5;
         originalSquatWeight += 5;
@@ -323,6 +387,33 @@ public class CalculateWeight extends AppCompatActivity {
         }
     }
 
+    // Save the day for next time the user opens app
+    public void recordDay() {
+        EditText editText = (EditText) findViewById(R.id.day);
+        day = Integer.parseInt(editText.getText().toString());
+        Context context = this;
+        SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("day",day);
+        editor.commit();
+    }
+
+    // User clicks right arrow button
+    public void nextDay(View view) {
+        day += 1;
+        EditText editText = (EditText) findViewById(R.id.day);
+        editText.setText(Integer.toString(day));
+    }
+
+    // User clicks left arrow button
+    public void previousDay(View view) {
+        if (day > 1) {
+            day -= 1;
+            EditText editText = (EditText) findViewById(R.id.day);
+            editText.setText(Integer.toString(day));
+        }
+    }
+
     // User manually changing the day
     public void setWeight() {
         EditText editText = (EditText) findViewById(R.id.day);
@@ -333,8 +424,6 @@ public class CalculateWeight extends AppCompatActivity {
         militaryWeight = originalMilitaryWeight + (5 * ((day - 1) / 2));
         calculateWeights();
     }
-
-
 
     // If weight is too low do not add split weight
     public String displayWeight(double splitWeight) {

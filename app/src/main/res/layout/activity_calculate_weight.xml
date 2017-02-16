@@ -15,23 +15,36 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
         app:layout_constraintVertical_bias="0.0"
         android:scaleType="centerCrop" />
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:popupTheme="@style/AppTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/colorPrimary" />
+
     <GridLayout
         android:layout_width="377dp"
         android:layout_height="87dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:id="@+id/gridLayout">
+        android:id="@+id/gridLayout"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -40,7 +53,7 @@
             android:id="@+id/previousDay"
             android:layout_weight="0.99"
             android:background="@android:color/transparent"
-            android:onClick="decreaseWeight" />
+            android:onClick="previousDay" />
 
         <TextView
             android:text="Day"
@@ -57,7 +70,6 @@
             android:ems="10"
             android:id="@+id/day"
             android:textSize="24sp"
-            android:text="1"
             android:textColor="@android:color/white"
             android:textAlignment="center" />
 
@@ -70,18 +82,17 @@
             tools:layout_editor_absoluteY="391dp"
             tools:layout_editor_absoluteX="371dp"
             android:layout_weight="1.01"
-            android:onClick="increaseWeight" />
+            android:onClick="nextDay" />
     </GridLayout>
 
     <ScrollView
-        android:layout_width="379dp"
-        android:layout_height="527dp"
+        android:layout_width="373dp"
+        android:layout_height="476dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/scrollView2"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintHorizontal_bias="0.84"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout">
 

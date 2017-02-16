@@ -1,21 +1,22 @@
 package com.example.tempest_blue.str;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.annotation.ColorRes;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import static com.example.tempest_blue.str.R.style.Tempest;
+import static android.R.color.white;
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,45 @@ public class MainActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         }
+
+        // Define toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(getColor(white));
+
+        Context context = this;
+        SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+        Boolean firstTime;
+        firstTime = sharedPref.getBoolean("firstTime", false);
+        EditText squatWeight = (EditText) findViewById(R.id.squatWeight);
+        squatWeight.setText(Integer.toString(sharedPref.getInt("squatWeight", 45)));
+        EditText benchWeight = (EditText) findViewById(R.id.benchWeight);
+        benchWeight.setText(Integer.toString(sharedPref.getInt("benchWeight", 45)));
+        EditText deadliftWeight = (EditText) findViewById(R.id.deadliftWeight);
+        deadliftWeight.setText(Integer.toString(sharedPref.getInt("deadliftWeight", 45)));
+        EditText militaryWeight = (EditText) findViewById(R.id.militaryWeight);
+        militaryWeight.setText(Integer.toString(sharedPref.getInt("militaryWeight", 45)));
+        if (!firstTime) {
+            startActivity(new Intent(this, CalculateWeight.class));
+            finish();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_activity,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_map:
+                startActivity(new Intent(this, FindGym.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // Validate that weights have been entered.
@@ -71,12 +111,20 @@ public class MainActivity extends AppCompatActivity {
             weight = Integer.parseInt(value);
             extras.putInt("MILITARY_WEIGHT", weight);
 
-            int day = 1;
-            extras.putInt("DAY", day);
+            // Set first time to false
+            Context context = this;
+            SharedPreferences sharedPref = getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("firstTime", true);
+            editor.putInt("day",1);
+            editor.apply();
 
             Intent intent = new Intent(this, CalculateWeight.class);
             intent.putExtras(extras);
             startActivity(intent);
+            finish();
         }
     }
+
+
 }
