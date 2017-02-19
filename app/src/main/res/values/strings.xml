@@ -1,13 +1,24 @@
 <resources>
-    <!--App name-->
-    <string name="app_name">Str</string>
+    <!--App Name-->
+    <string name="app_name">Str++</string>
+
+    <!--Exercise Names-->
+    <string name="bench">Bench Press</string>
+    <string name="squat">Squat</string>
+    <string name="deadlift">Dead Lift</string>
+    <string name="military">Military Press</string>
+    <string name="day">Day</string>
 
     <!--Activity Names-->
     <string name="title_activity_main_activity">Getting Started</string>
     <string name="title_activity_calculate_weight">Calculated Weights</string>
     <string name="title_activity_find_gym">Find Gym</string>
+    <string name="title_activity_countdown_timer">Countdown Timer</string>
 
     <!--Action Bar Strings-->
     <string name="action_map">Find Nearby Gyms</string>
+
+    <!--About Message-->
+    <string name="action_about">Hello, my name is Tien. To learn more about me please visit my website at: www.tnvo.tk</string>
 
 </resources>
