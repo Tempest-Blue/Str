@@ -2,11 +2,13 @@ package com.example.tempest_blue.str;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -103,7 +105,16 @@ public class CalculateWeight extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() != 0) {
+                if (s.length() != 0 && s.length() < 10) {
+                    if (Integer.parseInt(s.toString()) > 36500) {
+                        day.setError("Wow! You've been working out for more than 100 years!");
+                    }
+                    if (s.length() > 6 && s.length() < 9) {
+                        day.setError("Getting ahead of ourselves there aren't we?");
+                    }
+                    if (s.length() == 9) {
+                        day.setError("Are you immortal?");
+                    }
                     setWeight();
                     recordDay();
                 }
@@ -120,7 +131,7 @@ public class CalculateWeight extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the your_fab_buttons; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calculate_weights,menu);
         return true;
     }
@@ -140,6 +151,20 @@ public class CalculateWeight extends AppCompatActivity {
                 return true;
             case R.id.action_map:
                 startActivity(new Intent(this, FindGym.class));
+                return true;
+            case R.id.action_timer:
+                startActivity(new Intent(this, CountdownTimer.class));
+                return true;
+            case R.id.action_about:
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage(R.string.action_about).setTitle("About the devleoper");
+                alertDialogBuilder.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -359,31 +384,39 @@ public class CalculateWeight extends AppCompatActivity {
     }
 
     public void subFirstExerciseWeight (View view) {
-        squatWeight = squatWeight - 5;
-        originalSquatWeight = originalSquatWeight - 5;
-        calculateWeights();
+        if (!(originalSquatWeight - 5 < 45)) {
+            squatWeight -= 5;
+            originalSquatWeight -= 5;
+            calculateWeights();
+        }
     }
 
     public void subSecondExerciseWeight (View view) {
         TextView textView = (TextView) findViewById(R.id.secondExercise);
         if (textView.getText().toString() == "Bench") {
-            benchWeight = benchWeight - 5;
-            originalBenchWeight = originalBenchWeight - 5;
-            calculateWeights();
+            if (!(originalBenchWeight - 5 < 45)) {
+                benchWeight -= 5;
+                originalBenchWeight -= 5;
+                calculateWeights();
+            }
         }
         else {
-            militaryWeight = militaryWeight - 5;
-            originalMilitaryWeight = originalMilitaryWeight - 5;
-            calculateWeights();
+            if (!(originalMilitaryWeight - 5 < 45)) {
+                militaryWeight -= 5;
+                originalMilitaryWeight -= 5;
+                calculateWeights();
+            }
         }
     }
 
     public void subThirdExerciseWeight (View view) {
         TextView textView = (TextView) findViewById(R.id.thirdExercise);
         if (textView.getText().toString() == "Deadlift") {
-            deadliftWeight -= 5;
-            originalDeadliftWeight -= 5;
-            calculateWeights();
+            if (!(originalDeadliftWeight - 5 < 45)) {
+                deadliftWeight -= 5;
+                originalDeadliftWeight -= 5;
+                calculateWeights();
+            }
         }
     }
 

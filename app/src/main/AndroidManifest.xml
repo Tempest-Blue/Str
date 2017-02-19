@@ -10,12 +10,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:name="android.support.multidex.MultiDexApplication">>
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        >
 
         <!-- android:theme="@style/AppTheme"> -->
         <activity android:name=".MainActivity">
@@ -35,7 +36,6 @@
                 android:value=".MainActivity" />
         </activity>
 
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -47,7 +47,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".FindGym"
             android:label="@string/title_activity_find_gym"
@@ -56,6 +55,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-    </application>
 
+        <activity
+            android:name=".CountdownTimer"
+            android:label="Countdown Timer"
+            android:parentActivityName=".CalculateWeight">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CalculateWeight" />
+        </activity>
+    </application>
 </manifest>
