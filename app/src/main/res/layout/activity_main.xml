@@ -7,18 +7,31 @@
     android:layout_height="match_parent"
     tools:context="com.example.tempest_blue.str.MainActivity">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="682dp"
-        app:srcCompat="@drawable/start"
-        android:id="@+id/background"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/start"
+            android:id="@+id/background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+    </RelativeLayout>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -57,46 +70,46 @@
         android:layout_marginTop="24dp"
         android:weightSum="1"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/linearLayout">
 
-        <TextView
-            android:text="Bench"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textAlignment="center" />
+            android:textColorHint="@android:color/white"
+            app:hintTextAppearance="@style/TextLabel">
+            <EditText
+                android:id="@+id/benchWeight"
+                android:hint="@string/bench"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:nextFocusDown="@+id/deadliftWeight"
+                android:textAlignment="center"
+                android:theme="@style/Theme.App.Base"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/benchWeight"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:nextFocusDown="@+id/deadliftWeight" />
-
-        <TextView
-            android:text="Dead Lift"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView8"
-            android:textSize="24sp"
-            android:textColor="@android:color/white"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/deadliftWeight"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:nextFocusDown="@+id/squatWeight" />
-
+            android:textColorHint="@android:color/white"
+            app:hintTextAppearance="@style/TextLabel">
+            <EditText
+                android:id="@+id/deadliftWeight"
+                android:hint="@string/deadlift"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:nextFocusDown="@+id/squatWeight"
+                android:textAlignment="center"
+                android:theme="@style/Theme.App.Base"/>
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -110,61 +123,57 @@
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/linearLayout">
 
-        <TextView
-            android:text="Squat"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView7"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textAlignment="center" />
+            android:textColorHint="@android:color/white"
+            app:hintTextAppearance="@style/TextLabel">
+            <EditText
+                android:id="@+id/squatWeight"
+                android:hint="@string/squat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:nextFocusDown="@+id/militaryWeight"
+                android:textAlignment="center"
+                android:theme="@style/Theme.App.Base"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/squatWeight"
-            android:textColor="@android:color/white"
-            android:textAlignment="center"
-            android:nextFocusDown="@+id/militaryWeight" />
-
-        <TextView
-            android:text="Military Press"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/militaryWeight"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:nextFocusDown="@+id/benchWeight" />
-
+            android:textColorHint="@android:color/white"
+            app:hintTextAppearance="@style/TextLabel">
+            <EditText
+                android:id="@+id/militaryWeight"
+                android:hint="@string/military"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:nextFocusDown="@+id/benchWeight"
+                android:textAlignment="center"
+                android:theme="@style/Theme.App.Base"/>
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-    <Button
-        android:text="Begin Workout"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/beginWorkout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/begin"
+        android:id="@+id/imageButton2"
+        android:background="@android:color/transparent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:background="@color/colorPrimary"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         android:onClick="beginWorkout"/>
-
 
 </android.support.constraint.ConstraintLayout>
