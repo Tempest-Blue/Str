@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.tempest_blue.str.CalculateWeight">
 
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,15 +47,16 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="767dp"
+        android:layout_width="650dp"
+        android:layout_height="wrap_content"
         android:id="@+id/dayGrid"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintHorizontal_bias="0.45">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -69,26 +69,26 @@
 
         <TextView
             android:text="Day"
-            android:layout_width="142dp"
             android:layout_height="match_parent"
-            android:textSize="36sp"
+            android:textSize="24sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:layout_width="140dp" />
 
         <EditText
-            android:layout_width="139dp"
             android:layout_height="match_parent"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/day"
             android:maxLength="9"
-            android:textSize="36sp"
+            android:textSize="24sp"
             android:textColor="@android:color/white"
             android:textAlignment="center"
             android:layout_weight="1"
-            android:theme="@style/Theme.App.Base"/>
+            android:theme="@style/Theme.App.Base"
+            android:layout_width="140dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -101,15 +101,15 @@
     </LinearLayout>
 
     <ScrollView
-        android:layout_width="768dp"
+        android:layout_width="651dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/scrollView2"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/dayGrid"
-        android:layout_height="1015dp">
+        android:layout_height="218dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -136,14 +136,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -165,7 +165,7 @@
                             android:id="@+id/firstExercise"
                             android:textColor="@android:color/white"
                             android:layout_weight="1"
-                            android:textSize="36sp"
+                            android:textSize="22sp"
                             android:textAlignment="center" />
 
                         <ImageButton
@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white" />
 
@@ -192,7 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white" />
 
@@ -201,7 +201,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white" />
 
@@ -210,7 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white" />
 
@@ -219,14 +219,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -247,7 +247,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/secondExercise"
                             android:layout_weight="1"
-                            android:textSize="36sp"
+                            android:textSize="22sp"
                             android:textColor="@android:color/white"
                             android:textAlignment="center" />
 
@@ -265,7 +265,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center" />
 
@@ -274,7 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center" />
 
@@ -283,7 +283,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center" />
 
@@ -292,7 +292,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center" />
 
@@ -301,14 +301,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -329,7 +329,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/thirdExercise"
                             android:layout_weight="1"
-                            android:textSize="36sp"
+                            android:textSize="22sp"
                             android:textColor="@android:color/white"
                             android:textAlignment="center" />
 
@@ -347,7 +347,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"
                         android:id="@+id/thirdExerciseOne" />
@@ -357,7 +357,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"
                         android:id="@+id/thirdExerciseTwo" />
@@ -367,7 +367,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"
                         android:id="@+id/thirdExerciseThree" />
@@ -377,7 +377,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"
                         android:id="@+id/thirdExerciseFour" />
@@ -387,7 +387,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"
                         android:id="@+id/thirdExerciseFive" />
@@ -403,7 +403,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="textStart"
                         android:text="Weight Total | Split"
@@ -411,18 +411,18 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content"
@@ -431,7 +431,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/firstExerciseSecondSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -439,7 +439,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/firstExerciseThirdSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -447,7 +447,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/firstExerciseFourthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -455,25 +455,25 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/firstExerciseFifthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textColor="@android:color/white"
                         android:textAlignment="textStart"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content"
@@ -482,7 +482,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/secondExerciseSecondSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -490,7 +490,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/secondExerciseThirdSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -498,7 +498,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/secondExerciseFourthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -506,25 +506,25 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/secondExerciseFifthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="36dp" />
+                        android:layout_height="24dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content"
@@ -533,7 +533,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/thirdExerciseSecondSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -541,7 +541,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/thirdExerciseThirdSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -549,7 +549,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/thirdExerciseFourthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />
@@ -557,7 +557,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:id="@+id/thirdExerciseFifthSet"
-                        android:textSize="36sp"
+                        android:textSize="22sp"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/white"
                         android:layout_height="wrap_content" />

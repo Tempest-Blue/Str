@@ -11,6 +11,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -344,9 +347,17 @@ public class CountdownTimer extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
+                // Make text view and make link clickable
+                final TextView message = new TextView(this);
+                message.setPadding(75,0,0,0);
+                final SpannableString messageText = new SpannableString(this.getText(R.string.action_about));
+                Linkify.addLinks(messageText, Linkify.WEB_URLS);
+                message.setText(messageText);
+                message.setMovementMethod(LinkMovementMethod.getInstance());
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage(R.string.action_about).setTitle("About the devleoper");
-                alertDialogBuilder.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setTitle("About the developer").setView(message)
+                        .setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }

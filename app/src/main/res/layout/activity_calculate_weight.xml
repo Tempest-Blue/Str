@@ -57,7 +57,7 @@
 
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_previous"
             android:id="@+id/previousDay"
             android:background="@android:color/transparent"
@@ -66,16 +66,15 @@
 
         <TextView
             android:text="Day"
-            android:layout_width="142dp"
             android:layout_height="match_parent"
             android:textSize="24sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:layout_width="140dp" />
 
         <EditText
-            android:layout_width="139dp"
             android:layout_height="match_parent"
             android:inputType="number"
             android:ems="10"
@@ -85,11 +84,12 @@
             android:textColor="@android:color/white"
             android:textAlignment="center"
             android:layout_weight="1"
-            android:theme="@style/Theme.App.Base"/>
+            android:theme="@style/Theme.App.Base"
+            android:layout_width="140dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_next"
             android:id="@+id/nextDay"
             android:background="@android:color/transparent"
