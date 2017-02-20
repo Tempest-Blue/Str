@@ -14,7 +14,7 @@ Best used with Android **API Level 23+**.
 <img src="screenshots/calculations.png" width="293"> <img src="screenshots/timer.png" width="293"> <img src="screenshots/about.png" width="293">
 
 # Changelog
-Check out the [Releases](https://github.com/Tempest-Blue/Str/releases/latest) page for recent changes.
+Check out the [Releases](https://github.com/Tempest-Blue/Str/releases) page for recent changes.
 
 # Credits
 Based on the Starting Strength program by Mark Rippetoe.
